@@ -12,13 +12,14 @@ public:
     const uint16_t pcm_tx_source_en_register =  0x2050;
     const uint16_t pcm_rx_en_register =         0x205E;
     const uint16_t pcm_tx_en_register =         0x205F;
+    const uint16_t amp_en_register =            0x209F;
     const uint16_t iv_data_en_register =        0x20A7;
     const uint16_t global_en_register =         0x210F;
 
     I2CMaster& master = Master;
     I2CDevice amp = I2CDevice(master, slave_address, _BIG_ENDIAN);
 
-    max98389();
+    void begin(uint32_t frequency);
     bool configure();
     void report_error(const char* message);
 };

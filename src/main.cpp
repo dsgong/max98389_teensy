@@ -19,19 +19,19 @@ void setup() {
     // Enable the serial port for debugging
     Serial.begin(9600);
     Serial.println("Started");
-    delay(100);
     max98389 max;
-
+    max.master.set_internal_pullups(InternalPullup::disabled);
+    max.begin(400 * 1000U);
     // Check that we can see the sensor and configure it.
     configured = max.configure();
-}
-
-void loop() {
     if (configured) {
-
+        Serial.println("Configured");
     } else {
         Serial.println("Not configured");
     }
+}
+
+void loop() {
 
     // Blink the LED
     digitalWrite(LED_BUILTIN, HIGH);

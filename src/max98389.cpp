@@ -1,8 +1,8 @@
 #include "max98389.h"
 #include <i2c_device.h>
 
-max98389::max98389(){
-    master.begin(400 * 1000U);
+void max98389::begin(uint32_t frequency){
+    master.begin(frequency);
 }
 
 bool max98389::configure(){
@@ -18,8 +18,45 @@ bool max98389::configure(){
         return false;
     }
 
+    if(!amp.write(pcm_mode_register, (uint8_t) 0b110000101, false)){
+        report_error("ERROR: Failed to write PCM Mode.");
+        return false;
+    }
+    if(!amp.write(pcm_clock_register, (uint8_t) 0b00000100, false)){
+        report_error("ERROR: Failed to write PCM Clock.");
+        return false;
+    }
+
+    if(!amp.write(pcm_sample_rate_register, (uint8_t) 0x77, false)){
+        report_error("ERROR: Failed to write PCM Sample Rate.");
+        return false;
+    }
+    if(!amp.write(pcm_tx_source_en_register, (uint8_t) 0x03, false)){
+        report_error("ERROR: Failed to write Tx Source Enable.");
+        return false;
+    }
+    if(!amp.write(pcm_rx_en_register, (uint8_t) 0x01, false)){
+        report_error("ERROR: Failed to write PCM Rx Enable.");
+        return false;
+    }
+    if(!amp.write(pcm_tx_en_register, (uint8_t) 0x01, false)){
+        report_error("ERROR: Failed to write PCM Tx Enable.");
+        return false;
+    }
+    if(!amp.write(amp_en_register, (uint8_t) 0x01, false)){
+        report_error("ERROR: Failed to write Amp Enable.");
+        return false;
+    }
+    if(!amp.write(iv_data_en_register, (uint8_t) 0x03, false)){
+        report_error("ERROR: Failed to write IV Data Enable.");
+        return false;
+    }
+    if(!amp.write(global_en_register, (uint8_t) 0x01, false)){
+        report_error("ERROR: Failed to Global Enable.");
+        return false;
+    }
+
     Serial.println("Configured sensor successfully.");
-    return true;
     return true;
 }
 

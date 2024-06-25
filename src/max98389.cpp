@@ -18,7 +18,7 @@ bool max98389::configure(){
         return false;
     }
 
-    if(!amp.write(pcm_mode_register, (uint8_t) 0b110000101, false)){
+    if(!amp.write(pcm_mode_register, (uint8_t) 0b11000100, false)){
         report_error("ERROR: Failed to write PCM Mode.");
         return false;
     }
@@ -26,9 +26,16 @@ bool max98389::configure(){
         report_error("ERROR: Failed to write PCM Clock.");
         return false;
     }
-
-    if(!amp.write(pcm_sample_rate_register, (uint8_t) 0x77, false)){
+    if(!amp.write(pcm_sample_rate_register, (uint8_t) 0x47, false)){
         report_error("ERROR: Failed to write PCM Sample Rate.");
+        return false;
+    }
+    if(!amp.write(pcm_vmon_slots_register, (uint8_t) 0x00, false)){
+        report_error("ERROR: Failed to write PCM V Monitor Slots.");
+        return false;
+    }
+    if(!amp.write(pcm_imon_slots_register, (uint8_t) 0x00, false)){
+        report_error("ERROR: Failed to write PCM I Monitor Slots.");
         return false;
     }
     if(!amp.write(pcm_tx_source_en_register, (uint8_t) 0x03, false)){

@@ -9,7 +9,9 @@ public:
     const uint16_t pcm_mode_register =          0x2040;
     const uint16_t pcm_clock_register =         0x2041;
     const uint16_t pcm_sample_rate_register =   0x2042;
-    const uint16_t pcm_tx_source_en_register =  0x2050;
+    const uint16_t pcm_vmon_slots_register =    0x2044;
+    const uint16_t pcm_imon_slots_register =    0x2045;
+    const uint16_t pcm_tx_source_en_register =  0x205D;
     const uint16_t pcm_rx_en_register =         0x205E;
     const uint16_t pcm_tx_en_register =         0x205F;
     const uint16_t amp_en_register =            0x209F;

@@ -1,16 +1,22 @@
-// Copyright © 2019-2020 Richard Gemmell
-// Released under the MIT License. See license.txt. (https://opensource.org/licenses/MIT)
-
-// This example WILL NOT work unless you have an INA260
-// current sensor connected to pins 18 and 19.
-//
-// Demonstrates use of the I2C Device class to represent a slave device.
-// Creates an I2C master, configures a device and reads registers.
-
 #include <Arduino.h>
 #include <i2c_device.h>
 #include "max98389.h"
+#include <Audio.h>
 
+
+// GUItool: begin automatically generated code
+AudioSynthWaveform       waveform1;      //xy=188,240
+AudioEffectEnvelope      envelope1;      //xy=371,237
+AudioInputI2S            i2s1;           //xy=155,369
+AudioOutputI2S           i2s2;           //xy=565,241
+AudioInputUSB            usb1;           //xy=157,294
+AudioOutputUSB           usb2;           //xy=405,293
+
+AudioConnection          patchCord1(waveform1, envelope1);
+AudioConnection          patchCord2(envelope1, 0, i2s2, 0);
+AudioConnection          patchCord3(envelope1, 0, i2s2, 1);
+AudioConnection          patchCord4(i2s1, 0, usb2, 0);
+AudioConnection          patchCord5(i2s1, 1, usb2, 1);
 bool configured = false;
 
 void setup() {
@@ -29,13 +35,30 @@ void setup() {
     } else {
         Serial.println("Not configured");
     }
+
+    AudioMemory(8);
+
+    waveform1.pulseWidth(0.5);
+    waveform1.begin(0.1, 220, WAVEFORM_SINE);
+
+    envelope1.attack(50);
+    envelope1.decay(50);
+    envelope1.release(250);
+
+
 }
 
 void loop() {
 
-    // Blink the LED
-    digitalWrite(LED_BUILTIN, HIGH);
-    delay(900);
-    digitalWrite(LED_BUILTIN, LOW);
-    delay(500);
+    float w;
+    for (uint32_t i =1; i<20; i++) {
+        w = i / 20.0;
+        //waveform1.pulseWidth(w);
+        envelope1.noteOn();
+        digitalWrite(LED_BUILTIN, HIGH);
+        delay(800);
+        envelope1.noteOff();
+        digitalWrite(LED_BUILTIN, LOW);
+        delay(600);
+    }
 }

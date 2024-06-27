@@ -54,7 +54,7 @@ bool max98389::configure(){
         report_error("ERROR: Failed to write Amp Enable.");
         return false;
     }
-    if(!amp.write(iv_data_en_register, (uint8_t) 0x03, false)){
+    if(!amp.write(iv_data_en_register, (uint8_t) 0x02, false)){
         report_error("ERROR: Failed to write IV Data Enable.");
         return false;
     }

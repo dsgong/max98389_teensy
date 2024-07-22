@@ -11,6 +11,7 @@ public:
     const uint16_t pcm_sample_rate_register =   0x2042;
     const uint16_t pcm_vmon_slots_register =    0x2044;
     const uint16_t pcm_imon_slots_register =    0x2045;
+    const uint16_t tx_hi_z_control1 =           0x2050;
     const uint16_t pcm_tx_source_en_register =  0x205D;
     const uint16_t pcm_rx_en_register =         0x205E;
     const uint16_t pcm_tx_en_register =         0x205F;

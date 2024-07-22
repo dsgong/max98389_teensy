@@ -36,16 +36,16 @@ void setup() {
         Serial.println("Not configured");
     }
 
-    AudioMemory(8);
+    AudioMemory(128);
 
-    waveform1.pulseWidth(0.5);
-    waveform1.begin(0.1, 220, WAVEFORM_SINE);
+    //waveform1.pulseWidth(0.5);
+    waveform1.begin(0.1, 306, WAVEFORM_SINE);
 
-    envelope1.attack(50);
-    envelope1.decay(50);
-    envelope1.release(250);
+    envelope1.attack(0);
+    envelope1.decay(0);
+    envelope1.release(0);
 
-
+    envelope1.noteOn();
 }
 
 void loop() {
@@ -54,11 +54,12 @@ void loop() {
     for (uint32_t i =1; i<20; i++) {
         w = i / 20.0;
         //waveform1.pulseWidth(w);
-        envelope1.noteOn();
-        digitalWrite(LED_BUILTIN, HIGH);
+        
+        /*digitalWrite(LED_BUILTIN, HIGH);
         delay(800);
         envelope1.noteOff();
         digitalWrite(LED_BUILTIN, LOW);
         delay(600);
+        */
     }
 }

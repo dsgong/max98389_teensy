@@ -18,7 +18,7 @@ bool max98389::configure(){
         return false;
     }
 
-    if(!amp.write(pcm_mode_register, (uint8_t) 0b11000100, false)){
+    if(!amp.write(pcm_mode_register, (uint8_t) 0b11000000, false)){
         report_error("ERROR: Failed to write PCM Mode.");
         return false;
     }
@@ -34,7 +34,7 @@ bool max98389::configure(){
         report_error("ERROR: Failed to write PCM V Monitor Slots.");
         return false;
     }
-    if(!amp.write(pcm_imon_slots_register, (uint8_t) 0x00, false)){
+    if(!amp.write(pcm_imon_slots_register, (uint8_t) 0x01, false)){
         report_error("ERROR: Failed to write PCM I Monitor Slots.");
         return false;
     }
@@ -46,7 +46,7 @@ bool max98389::configure(){
         report_error("ERROR: Failed to write PCM Rx Enable.");
         return false;
     }
-    if(!amp.write(pcm_tx_en_register, (uint8_t) 0x01, false)){
+    if(!amp.write(pcm_tx_en_register, (uint8_t) 0x03, false)){
         report_error("ERROR: Failed to write PCM Tx Enable.");
         return false;
     }
@@ -54,10 +54,15 @@ bool max98389::configure(){
         report_error("ERROR: Failed to write Amp Enable.");
         return false;
     }
-    if(!amp.write(iv_data_en_register, (uint8_t) 0x02, false)){
+    if(!amp.write(iv_data_en_register, (uint8_t) 0x03, false)){
         report_error("ERROR: Failed to write IV Data Enable.");
         return false;
     }
+
+    for(uint16_t i = 0; i < 7; i++){
+        amp.write((uint16_t)(tx_hi_z_control1+i), (uint8_t) 0x00, false);
+    }
+
     if(!amp.write(global_en_register, (uint8_t) 0x01, false)){
         report_error("ERROR: Failed to Global Enable.");
         return false;

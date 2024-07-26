@@ -7,16 +7,17 @@
 // GUItool: begin automatically generated code
 AudioSynthWaveform       waveform1;      //xy=188,240
 AudioEffectEnvelope      envelope1;      //xy=371,237
-AudioInputI2S            i2s1;           //xy=155,369
+
+AudioInputI2SQuad        i2s_quad1;      //xy=301,598
 AudioOutputI2S           i2s2;           //xy=565,241
 AudioInputUSB            usb1;           //xy=157,294
 AudioOutputUSB           usb2;           //xy=405,293
 
 AudioConnection          patchCord1(waveform1, envelope1);
-AudioConnection          patchCord2(envelope1, 0, i2s2, 0);
-AudioConnection          patchCord3(envelope1, 0, i2s2, 1);
-AudioConnection          patchCord4(i2s1, 0, usb2, 0);
-AudioConnection          patchCord5(i2s1, 1, usb2, 1);
+AudioConnection          patchCord2(i2s_quad1, 0, i2s2, 0);
+AudioConnection          patchCord3(i2s_quad1, 1, i2s2, 1);
+AudioConnection          patchCord4(i2s_quad1, 2, usb2, 0);
+AudioConnection          patchCord5(i2s_quad1, 3, usb2, 1);
 bool configured = false;
 
 void setup() {

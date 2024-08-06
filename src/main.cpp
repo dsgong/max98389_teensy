@@ -14,8 +14,8 @@ AudioInputUSB            usb1;           //xy=157,294
 AudioOutputUSB           usb2;           //xy=405,293
 
 AudioConnection          patchCord1(waveform1, envelope1);
-AudioConnection          patchCord2(i2s_quad1, 0, i2s2, 0);
-AudioConnection          patchCord3(i2s_quad1, 1, i2s2, 1);
+AudioConnection          patchCord2(usb1, 0, i2s2, 0);
+AudioConnection          patchCord3(usb1, 1, i2s2, 1);
 AudioConnection          patchCord4(i2s_quad1, 2, usb2, 0);
 AudioConnection          patchCord5(i2s_quad1, 3, usb2, 1);
 bool configured = false;

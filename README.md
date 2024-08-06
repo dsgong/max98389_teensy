@@ -1,4 +1,4 @@
-# Teensy 4.1 Driver for Max98389 Amplifier 
+# Teensy 4.0/4.1 Driver for Max98389 Amplifier 
 
 ## Instructions
 1. Install VSCode
@@ -12,3 +12,4 @@
 After uploading to teensy, you can read outputs from the terminal. From Windows, use PuTTY or some serial monitor. For Mac, use the screen command from terminal.
 
 To use the driver in another PlatformIO project, copy the .h and .cpp files of include, lib, and source.
+To use the driver with Teensy 4.1, modify platform.ini. 

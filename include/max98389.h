@@ -17,6 +17,7 @@ public:
     const uint16_t pcm_tx_en_register =         0x205F;
     const uint16_t amp_en_register =            0x209F;
     const uint16_t iv_data_en_register =        0x20A7;
+    const uint16_t auto_recovery_register =     0x210E;
     const uint16_t global_en_register =         0x210F;
 
     I2CMaster& master = Master;

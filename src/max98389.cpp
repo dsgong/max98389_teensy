@@ -50,6 +50,12 @@ bool max98389::configure(){
         report_error("ERROR: Failed to write PCM Tx Enable.");
         return false;
     }
+
+    if(!amp.write(auto_recovery_register, (uint8_t) 0x01, false)){
+        report_error("ERROR: Failed to write to auto recovery.");
+        return false;
+    }
+
     if(!amp.write(amp_en_register, (uint8_t) 0x01, false)){
         report_error("ERROR: Failed to write Amp Enable.");
         return false;

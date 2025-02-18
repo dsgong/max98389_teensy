@@ -9,6 +9,8 @@
 6. Connect Teensy via USB and upload. (Arrow on the bottom left)
 7. Select Teensy as the USB Audio device.
 
+Audio played from computer will be passed through to the speaker. On recording audio from computer, left channel is voltage and right channel is current measurement. 
+
 After uploading to teensy, you can read outputs from the terminal. From Windows, use PuTTY or some serial monitor. For Mac, use the screen command from terminal.
 
 To use the driver in another PlatformIO project, copy the .h and .cpp files of include, lib, and source.
